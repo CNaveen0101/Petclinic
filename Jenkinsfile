@@ -5,6 +5,10 @@ pipeline {
         maven 'Maven Build'
     }
 
+    environment {
+        SONARQUBESCANNER = "Sonar"
+    }
+
     stages {
 
         stage('Checkout') {
@@ -16,6 +20,14 @@ pipeline {
         stage('Compile') {
             steps {
                 sh 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+              withSonarQubeEnv('Sonar') {
+                sh 'mvn sonar:sonar'
+              }
             }
         }
     }
