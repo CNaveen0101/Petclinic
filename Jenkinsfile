@@ -33,7 +33,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'sudo cp /var/lib/jenkins/workspace/test/target/petclinic.war /home/ubuntu/apache-tomcat-9.0.91/webapps'
+                sh 'cp /var/lib/jenkins/workspace/test/target/petclinic.war /home/ubuntu/apache-tomcat-9.0.91/webapps'
             }
         }
     }
