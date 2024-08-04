@@ -2,18 +2,18 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven Build'
+        maven 'Maven'
     }
 
-    environment {
-        SONARQUBESCANNER = "Sonar"
+    environment variable {
+        SONARQUBE_SCANNER="Sonar"
     }
 
-    stages {
+    stages{
 
         stage('Checkout') {
             steps {
-                echo "The code will be passed from github"
+                echo "Code Checkout Passed"
             }
         }
 
