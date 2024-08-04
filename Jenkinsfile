@@ -5,7 +5,7 @@ pipeline {
         maven 'Maven'
     }
 
-    environment variable {
+    environment {
         SONARQUBE_SCANNER="Sonar"
     }
 
