@@ -13,7 +13,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo "Code Checkout Passsed"
+                echo "Code Checkout Passed"
             }
         }
 
@@ -28,6 +28,12 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn clean package'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'cp /var/lib/jenkins/workspace/test/target/petclinic.war /home/ubuntu/apache-tomcat-9.0.91/webapps'
             }
         }
     }
