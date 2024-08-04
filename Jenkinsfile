@@ -13,7 +13,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo "Code Checkout Passed"
+                echo "Code Checkout Passsed"
             }
         }
 
