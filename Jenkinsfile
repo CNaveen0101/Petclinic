@@ -31,9 +31,10 @@ pipeline {
             }
         }
 
-        stage('Owasp Dependency') {
+        stage('OWASP Dependency Check') {
             steps {
-                sh '/usr/local/bin/dependency-check/bin/dependency-check.sh --project "OWASP" --scan /var/lib/jenkins/workspace/test/target/'
+              dependencyCheck additionalArguments: '--scan .',
+              odcInstallation: 'OWASP'
             }
         }
 
