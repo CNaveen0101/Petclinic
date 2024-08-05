@@ -3,10 +3,7 @@ pipeline {
 
     tools {
         maven 'Maven'
-    }
-
-    environment {
-        SONARQUBE_SCANNER="Sonar"
+        SONARQUBE_SCANNER 'Sonar'
     }
 
     stages{
@@ -19,7 +16,6 @@ pipeline {
 
         stage('Test') {
             steps {
-              withSonarQubeEnv('Sonar') {
                 sh 'mvn sonar:sonar'
               }
             }
@@ -31,10 +27,5 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
-                sh 'cp /var/lib/jenkins/workspace/test/target/petclinic.war /home/ubuntu/apache-tomcat-9.0.91/webapps'
-            }
-        }
     }
 }
