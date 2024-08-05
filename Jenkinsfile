@@ -31,6 +31,12 @@ pipeline {
             }
         }
 
+        stage('Owasp Dependency') {
+            steps {
+               sh 'java -jar /path/to/dependency-check.jar --project "OWASP" --scan /var/lib/jenkins/workspace/test/target/'
+            }
+        }
+
         stage('Deploy') {
             steps {
                 sh 'sudo cp /var/lib/jenkins/workspace/test/target/petclinic.war /home/ubuntu/apache-tomcat-9.0.91/webapps'
