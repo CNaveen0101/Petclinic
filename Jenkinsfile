@@ -33,7 +33,7 @@ pipeline {
 
         stage('Owasp Dependency') {
             steps {
-               sh 'java -jar /usr/local/bin/dependency-check.jar --project "OWASP" --scan /var/lib/jenkins/workspace/test/target/'
+                sh '/usr/local/bin/dependency-check/bin/dependency-check.sh --project "OWASP" --scan /var/lib/jenkins/workspace/test/target/'
             }
         }
 
