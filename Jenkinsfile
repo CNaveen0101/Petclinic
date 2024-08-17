@@ -6,7 +6,7 @@ pipeline{
     }
 
     environment{
-        sonar "Sonar-Scanner"
+        Sonar = "Sonar-Scanner"
     }
 
     stages {
