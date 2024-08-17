@@ -3,7 +3,7 @@ pipeline{
 
     tools {
       maven 'Maven'
-      owasp 'OWASP'
+      dependencyCheck 'OWASP'
     }
 
 
@@ -34,7 +34,7 @@ pipeline{
           steps {
             dependencyCheck additionalArguments: '--format XML --format HTML --failOnCVSS 7', 
                 odcInstallation: 'Default', 
-                scanPath: '**/*.jar'
+                scanPath: '/var/lib/jenkins/workspace/A/target*.jar'
          }
         }
 
