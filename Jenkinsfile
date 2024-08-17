@@ -5,9 +5,6 @@ pipeline{
       maven 'Maven'
     }
 
-    environment{
-        Sonar = "Sonar-Scanner"
-    }
 
     stages {
         stage('Checkout') {
