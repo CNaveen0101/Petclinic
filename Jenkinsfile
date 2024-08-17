@@ -1,11 +1,9 @@
-pipeline{
+pipeline {
     agent any
 
     tools {
-      maven 'Maven'
-      dependencyCheck 'OWASP'
+        maven 'Maven'  // This is correct for Maven
     }
-
 
     stages {
         stage('Checkout') {
@@ -14,30 +12,26 @@ pipeline{
             }
         }
 
-        stage ('Test') {
+        stage('Test') {
             steps {
                 withSonarQubeEnv('Sonar') {
-                sh 'mvn sonar:sonar'
+                    sh 'mvn sonar:sonar'
                 }
             }
         }
 
-        stage ('Build Stage') {
+        stage('Build Stage') {
             steps {
                 sh 'mvn clean package'
             }
-
         }
-
 
         stage('Dependency Check') {
-          steps {
-            dependencyCheck additionalArguments: '--format XML --format HTML --failOnCVSS 7', 
-                odcInstallation: 'Default', 
-                scanPath: '/var/lib/jenkins/workspace/A/target*.jar'
-         }
+            steps {
+                dependencyCheck additionalArguments: '--format XML --format HTML --failOnCVSS 7', 
+                    odcInstallation: 'Default', 
+                    scanPath: '/var/lib/jenkins/workspace/A/target/*.jar'  // Corrected wildcard usage
+            }
         }
-
     }
 }
-
