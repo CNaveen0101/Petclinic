@@ -6,7 +6,7 @@ pipeline{
     }
 
     environment{
-        sonar="Sonar-Scanner"
+        sonar "Sonar-Scanner"
     }
 
     stages {
@@ -25,9 +25,7 @@ pipeline{
 
         stage ('Test') {
             steps {
-                withSonarQubeEnv(credentialsId: 'Sonar') {
                 sh 'mvn sonar:sonar'
-                }
                 
             }
         }
