@@ -5,6 +5,10 @@ pipeline{
       maven 'Maven'
     }
 
+    environment{
+        sonar="Sonar-Scanner"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -17,6 +21,12 @@ pipeline{
                 sh 'mvn clean package'
             }
 
+        }
+
+        stage ('Test') {
+            steps {
+                sh 'mvn sonar:sonar'
+            }
         }
     }
 }
