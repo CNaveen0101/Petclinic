@@ -14,13 +14,6 @@ pipeline{
             }
         }
 
-        stage ('Build Stage') {
-            steps {
-                sh 'mvn clean package'
-            }
-
-        }
-
         stage ('Test') {
             steps {
                 withSonarQubeEnv('Sonar') {
@@ -28,6 +21,14 @@ pipeline{
                 }
             }
         }
+
+        stage ('Build Stage') {
+            steps {
+                sh 'mvn clean package'
+            }
+
+        }
+
 
         stage('Dependency Check') {
           steps {
