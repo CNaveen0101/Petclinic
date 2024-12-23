@@ -1,21 +1,24 @@
 pipeline {
   agent any
 
-  environment {
-    SONAR_SCANNER = 'Sonar-Scanner'
-  }
-
   stages {
+    // Stage 1: Code Checkout
     stage('Code-Checkout') {
       steps {
         git branch: 'main', url: 'https://github.com/CNaveen0101/Petclinic'
       }
     }
 
-    stage('Sonar-qube-analysis') {
+    // Stage 2: SonarQube Analysis
+    stage('SonarQube Analysis') {
       steps {
-        withSonarQubeEnv('Sonar-Scanner') {
-          sh 'mvn sonar:sonar'
+        withSonarQubeEnv('Sonar-Scanner') { // Replace 'SonarQube-Server' with your SonarQube configuration name
+          sh """
+          mvn sonar:sonar \
+            -Dsonar.projectKey=Petclinic \
+            -Dsonar.host.url=http://192.168.1.9:9000 \
+            -Dsonar.login=Sonar-Cred
+          """
         }
       }
     }
